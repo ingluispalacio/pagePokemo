@@ -1,5 +1,3 @@
-import { getPokemonByName } from "./david.js";
-
 /**
  * Nombre:getFirst150PokemonDetails
  * Parametros: Ninguno
