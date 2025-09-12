@@ -11,8 +11,8 @@
  *   Inicializa la lógica de apertura, cierre y control de foco 
  *   para un modal accesible, permitiendo reutilizarlo en distintos elementos.
  */
-const initModal=(openBtnId, modalId, overlayId, closeBtnId)=>{
-  const openBtn = document.getElementById(openBtnId);
+const initModal = (openBtnClass, modalId, overlayId, closeBtnId) => {
+  const openBtns = document.getElementsByClassName(openBtnClass);
   const modal = document.getElementById(modalId);
   const overlay = document.getElementById(overlayId);
   const dialog = modal.querySelector('[role="dialog"]');
@@ -72,10 +72,18 @@ const initModal=(openBtnId, modalId, overlayId, closeBtnId)=>{
 
   // Eventos
   overlay.addEventListener("click", closeModal);
-  openBtn.addEventListener("click", openModal);
-  closeBtn.addEventListener("click", closeModal);
+    if (closeBtn) {
+    closeBtn.addEventListener("click", () => {
+        modal.classList.add("hidden");
+        overlay.classList.add("hidden");
+    });
+    }
+  // 🔥 Aquí el cambio importante:
+  Array.from(openBtns).forEach((btn) => {
+    btn.addEventListener("click", openModal);
+  });
 
   return { openModal, closeModal };
-}
+};
 
 export {initModal} 
