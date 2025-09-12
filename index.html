@@ -81,13 +81,13 @@
     <!-- CARDS -->
     <section
       id="conteinerCards"
-      class="p-6 gap-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  place-items-center font-sans"
+      class="p-7 gap-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  place-items-center font-sans"
     >
       <!-- Renderizado dinámico de tarjetas -->
     </section>
 
     <!-- PAGINATION -->
-    <div id="pagination" class="flex justify-center items-center mt-6 space-x-2"></div>
+    <div id="pagination" class="flex justify-center items-center mt-6 space-x-2 p-4 "></div>
 
 
     <div
@@ -108,10 +108,10 @@
           class="relative z-10 max-w-[900px] w-full mx-4 bg-white rounded-2xl shadow-xl transform transition-all duration-300 opacity-0 scale-95 pointer-events-none"
         >
           <div
-            class="w-full max-w-[900px] bg-red-500/80 shadow-lg rounded-lg overflow-hidden"
+            class="w-full max-w-[900px] bg-red-500/80 shadow-lg rounded-lg overflow-hidden" id="bodyModalContent"
           >
             <!-- HEADER -->
-            <header
+            <div
               class="bg-red-400/90 flex flex-col sm:flex-row sm:justify-between items-center text-center sm:text-left px-4 py-2"
             >
               <button
@@ -132,10 +132,10 @@
               >
                 Venusaur N.º 0003
               </button>
-            </header>
+            </div>
 
             <!-- MAIN -->
-            <main class="p-4 sm:p-6 border-8 border-red-900">
+            <div class="p-4 sm:p-6 border-8 border-red-900">
               <!-- Contenido principal -->
               <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div
@@ -359,7 +359,7 @@
                   </div>
                 </div>
               </div>
-            </main>
+            </div>
           </div>
         </div>
       </div>
