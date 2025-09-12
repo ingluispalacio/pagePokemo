@@ -1,5 +1,11 @@
 import { getFirst150PokemonDetails, fillModal } from "./roberto.js";
-import { cardsPokemon, showLoading, searchByName, searchByType } from "./mario.js";
+import {
+  cardsPokemon,
+  showLoading,
+  searchByName,
+  searchByType,
+  debounce,
+} from "./mario.js";
 import { getPokemonByName } from "./david.js";
 import { initModal } from "./luis.js";
 
@@ -9,14 +15,19 @@ showLoading();
   try {
     const pokemons = await getFirst150PokemonDetails();
     cardsPokemon(pokemons);
-    document.querySelector("#searchPokemon").addEventListener("input", (e) => {
-    searchByName(pokemons, e.target.value);
-  });
+    const handleSearchByName = debounce((value) => {
+      const filtered = searchByName(pokemons, value);
+      cardsPokemon(filtered);
+    }, 300);
 
-  // Buscar por tipo
-  document.querySelector("#filterType").addEventListener("change", (e) => {
-    searchByType(pokemons, e.target.value);
-  });
+    document.querySelector("#searchPokemon").addEventListener("input", (e) => {
+      handleSearchByName(e.target.value);
+    });
+
+    // Buscar por tipo
+    document.querySelector("#filterType").addEventListener("change", (e) => {
+      searchByType(pokemons, e.target.value);
+    });
     const { openModal } = initModal("openBtn", "modal", "overlay", "closeBtn");
     document.addEventListener("click", (e) => {
       if (e.target.closest(".openBtn")) {
