@@ -28,7 +28,6 @@ const initModal = (openBtnClass, modalId, overlayId, closeBtnId) => {
     requestAnimationFrame(() => {
       dialog.classList.remove("opacity-0", "scale-95", "pointer-events-none");
       dialog.classList.add("opacity-100", "scale-100", "pointer-events-auto");
-      closeBtn.focus();
     });
     document.addEventListener("keydown", onKeyDown);
   }
@@ -78,7 +77,7 @@ const initModal = (openBtnClass, modalId, overlayId, closeBtnId) => {
         overlay.classList.add("hidden");
     });
     }
-  // 🔥 Aquí el cambio importante:
+
   Array.from(openBtns).forEach((btn) => {
     btn.addEventListener("click", openModal);
   });
