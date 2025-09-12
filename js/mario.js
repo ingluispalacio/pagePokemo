@@ -132,6 +132,38 @@ function cardsPokemon(arrayPokemons) {
     };
 }
 
+// Buscar por nombre
+function searchByName(pokemons, query) {
+    const result = pokemons.filter((pokemon) =>
+        pokemon.name.toLowerCase().includes(query.toLowerCase())
+    );
 
+    if (result.length > 0) {
+        cardsPokemon(result);
+    } else {
+        const viewCards = document.querySelector("#conteinerCards");
+        viewCards.innerHTML = `
+          <p class="text-red-600 font-semibold">No se encontraron Pokémon con el nombre "${query}" 😢</p>
+        `;
+        document.querySelector("#pagination").innerHTML = "";
+    }
+}
 
-export { cardsPokemon, showLoading };
+// Buscar por tipo
+function searchByType(pokemons, type) {
+    const result = pokemons.filter((pokemon) =>
+        pokemon.types.some((t) => t.toLowerCase() === type.toLowerCase())
+    );
+
+    if (result.length > 0) {
+        cardsPokemon(result);
+    } else {
+        const viewCards = document.querySelector("#conteinerCards");
+        viewCards.innerHTML = `
+          <p class="text-red-600 font-semibold">No se encontraron Pokémon de tipo "${type}" 😢</p>
+        `;
+        document.querySelector("#pagination").innerHTML = "";
+    }
+}
+
+export { cardsPokemon, showLoading, searchByName, searchByType };
