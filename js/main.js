@@ -1,9 +1,7 @@
-import { getFirst150PokemonDetails, fill } from './roberto.js'
-import { cardsPokemon, showLoading } from './mario.js'
-import { getPokemonByName } from './david.js'
-import { initModal } from './luis.js'
-
-
+import { getFirst150PokemonDetails, fillModal } from "./roberto.js";
+import { cardsPokemon, showLoading } from "./mario.js";
+import { getPokemonByName } from "./david.js";
+import { initModal } from "./luis.js";
 
 showLoading();
 
@@ -11,12 +9,13 @@ showLoading();
   try {
     const pokemons = await getFirst150PokemonDetails();
     cardsPokemon(pokemons);
-    initModal("openBtn", "modal", "overlay", "closeBtn");
+    const { openModal } = initModal("openBtn", "modal", "overlay", "closeBtn");
     document.addEventListener("click", (e) => {
       if (e.target.closest(".openBtn")) {
+        openModal();
         const btn = e.target.closest(".openBtn");
-        const pokemonName = btn.dataset.pokemon; 
-        fill(pokemonName, getPokemonByName);
+        const pokemonName = btn.dataset.pokemon;
+        fillModal(pokemonName, getPokemonByName);
       }
     });
   } catch (error) {
