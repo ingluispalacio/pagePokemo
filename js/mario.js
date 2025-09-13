@@ -1,4 +1,9 @@
-//Muestra un spinner mientras se espera datos de la Api
+/**
+ * Nombre: showLoading
+ * Parámetros: Ninguno
+ * Devuelve: Nada (modifica el DOM directamente)
+ * Descripción: Muestra en pantalla un spinner animado y un mensaje de "Cargando..." mientras se procesan los datos de los pokemones.
+ */
 function showLoading() {
     const viewCards = document.querySelector("#conteinerCards");
     viewCards.innerHTML = `
@@ -8,10 +13,14 @@ function showLoading() {
     </div>
   `;
 }
-//Muestra una cantidad (10) de cards por pagina
+/**
+ * Nombre: renderCards
+ * Parámetros: page (número de página a renderizar), pokemons (array de objetos con datos de los pokemones), perPage (cantidad de pokemones por página)
+ * Devuelve: Nada (modifica el DOM directamente)
+ * Descripción: Renderiza en pantalla un subconjunto de pokemones según la página actual. Muestra nombre, imagen y tipos en forma de cards con un botón para abrir la Pokédex.
+ */
 function renderCards(page, pokemons, perPage) {
     const viewCards = document.querySelector("#conteinerCards");
-
     viewCards.innerHTML = "";
 
     const start = (page - 1) * perPage;
@@ -58,8 +67,12 @@ function renderCards(page, pokemons, perPage) {
     });
 }
 
-
-//Crea los botones de la paginacion y la forma de visualizarlos
+/**
+ * Nombre: renderPagination
+ * Parámetros: currentPage (página actual), totalPages (cantidad total de páginas)
+ * Devuelve: Nada (modifica el DOM directamente)
+ * Descripción: Renderiza los botones de paginación dinámicamente. Muestra botones de anterior, siguiente y un rango limitado de páginas con puntos suspensivos cuando hay muchas.
+ */
 function renderPagination(currentPage, totalPages) {
     const pagination = document.querySelector("#pagination");
     pagination.innerHTML = "";
@@ -113,7 +126,12 @@ function renderPagination(currentPage, totalPages) {
       &gt;
     </button>`;
 }
-//funcion principal que inicializa las cards y la paginacion
+/**
+ * Nombre: cardsPokemon
+ * Parámetros: arrayPokemons (array con los datos de todos los pokemones)
+ * Devuelve: Nada (inicializa la renderización de cards y paginación)
+ * Descripción: Controla el flujo principal de renderizado. Inicializa en la primera página, establece la cantidad de pokemones por página, y expone la función `changePage` globalmente para que los botones de paginación funcionen.
+ */
 function cardsPokemon(arrayPokemons) {
     let currentPage = 1;
     const perPage = 6; // ahora de 6 en 6
